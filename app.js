@@ -40,7 +40,7 @@ sessionOptions={
 const upload = multer({ 
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'uploads/'); // Specify the uploads directory
+      cb(null, '/tmp/'); // Specify the uploads directory
     },
     filename: function (req, file, cb) {
       cb(null, file.originalname); // Use the original file name
@@ -141,7 +141,7 @@ app.post('/uploadimage', upload.single('uploadimage'), async (req, res) => {
     }
 
     // Path to the saved file in the 'uploads' directory
-    const filePath = path.join(__dirname, req.file.path);
+    const filePath = req.file.path;;
 
     // Create a FormData instance and append the file
     const formData = new FormData();
